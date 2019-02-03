@@ -1,0 +1,38 @@
+---
+# tasks file for roles/web-app-role
+- name: log into docker hub registry
+  docker_login:
+        email: "ship.romeo@gmail.com"
+        username: "yurgent"
+        password: "{{ dockerhub_pass }}"
+
+- name: launch 1st container on port 5021
+  docker_container:
+    name: web-app-1
+    hostname: web-app-1
+    state: started
+    image: "yurgent/epam:web_app"
+    pull: true
+    ports:
+      - "5021:5000"
+
+- name: launch 2nd container on port 5022
+  docker_container:
+    name: web-app-2
+    hostname: web-app-2
+    state: started
+    image: "yurgent/epam:web_app"
+    pull: true
+    ports:
+      - "5022:5000"
+
+- name: launch 3rd container on port 5023
+  docker_container:
+    name: web-app-3
+    hostname: web-app-3
+    state: started
+    image: "yurgent/epam:web_app"
+    pull: true
+    ports:
+      - "5023:5000"
+

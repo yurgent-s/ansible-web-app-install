@@ -1,0 +1,4 @@
+---
+# vars file for roles/web-app-role
+
+dockerhub_pass: Ytdtcnf505
