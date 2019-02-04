@@ -6,6 +6,13 @@
         username: "yurgent"
         password: "{{ dockerhub_pass }}"
 
+- name: create docker network
+  become: true
+  become_method: sudo
+  docker_network:
+    name: containers_net
+    state: present
+
 - name: launch 1st container on port 5021
   docker_container:
     name: web-app-1
@@ -15,6 +22,8 @@
     pull: true
     ports:
       - "5021:5000"
+    networks:
+      - name: containers_net
 
 - name: launch 2nd container on port 5022
   docker_container:
@@ -25,6 +34,8 @@
     pull: true
     ports:
       - "5022:5000"
+    networks:
+      - name: containers_net
 
 - name: launch 3rd container on port 5023
   docker_container:
@@ -35,4 +46,6 @@
     pull: true
     ports:
       - "5023:5000"
+    networks:
+      - name: containers_net
 
