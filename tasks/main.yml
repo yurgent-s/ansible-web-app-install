@@ -7,8 +7,6 @@
         password: "{{ dockerhub_pass }}"
 
 - name: create docker network
-  become: true
-  become_method: sudo
   docker_network:
     name: containers_net
     state: present
